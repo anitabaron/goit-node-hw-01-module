@@ -1,10 +1,14 @@
-const fs = require("fs").promises;
-const path = require("path");
-const { v4: uuidv4 } = require("uuid");
+import * as fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+import { v4 as uuidv4 } from "uuid";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const contactsPath = path.resolve(__dirname, "../db/contacts.json");
 
-const listContacts = async () => {
+export const listContacts = async () => {
   try {
     const dataJson = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(dataJson);
@@ -15,7 +19,7 @@ const listContacts = async () => {
   }
 };
 
-const getContactById = async (contactId) => {
+export const getContactById = async (contactId) => {
   try {
     const dataJson = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(dataJson);
@@ -32,7 +36,7 @@ const getContactById = async (contactId) => {
   }
 };
 
-const removeContact = async (contactId) => {
+export const removeContact = async (contactId) => {
   try {
     const dataJson = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(dataJson);
@@ -51,7 +55,7 @@ const removeContact = async (contactId) => {
   }
 };
 
-const addContact = async (name, email, phone) => {
+export const addContact = async (name, email, phone) => {
   try {
     const dataJson = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(dataJson);
@@ -65,5 +69,3 @@ const addContact = async (name, email, phone) => {
     console.error("Błąd dodawania kontaktu ", err);
   }
 };
-
-module.exports = { listContacts, getContactById, removeContact, addContact };
