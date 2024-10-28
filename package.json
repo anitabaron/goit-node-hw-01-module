@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "Anita_Baron <anitka.ba@gmail.com>",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "description": "",
   "dependencies": {
     "commander": "^12.1.0",
